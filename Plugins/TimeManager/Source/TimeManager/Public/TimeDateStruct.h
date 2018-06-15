@@ -21,7 +21,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "TimeDate.generated.h"
+#include "TimeDateStruct.generated.h"
 
 
 USTRUCT(BlueprintType)

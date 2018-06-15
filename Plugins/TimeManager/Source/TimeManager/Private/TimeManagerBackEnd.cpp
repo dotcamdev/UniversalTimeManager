@@ -1,7 +1,7 @@
 // Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
 
-#include "TimeManager.h"
-#include "TimeDate.h"
+#include "TimeManagerBackEnd.h"
+#include "TimeDateStruct.h"
 
 #define LOCTEXT_NAMESPACE "FTimeManagerModule"
 

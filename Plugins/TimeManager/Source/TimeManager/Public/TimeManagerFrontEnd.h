@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include  "TimeManager.h"
+#include  "TimeManagerBackEnd.h"
 #include "TimeManagerFrontEnd.generated.h"
 
 
@@ -13,6 +13,12 @@ class ATimeManagerFrontEnd : public AActor
 	GENERATED_UCLASS_BODY()
 
 public:
+		
 	UFUNCTION(BlueprintCallable, Category = "TimeManager")
-		bool InitializeCalendar(FTimeDate time);
+		void InitializeCalendar(FTimeDate time);
+
+private:
+
+	FTimeManagerModule TimeManagerBackEnd = FTimeManagerModule::Get();
+	
 };

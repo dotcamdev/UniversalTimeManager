@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "ModuleManager.h"
-#include "TimeDate.h"
+#include "TimeDateStruct.h"
 
 class FTimeManagerModule : public IModuleInterface
 {

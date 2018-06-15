@@ -18,7 +18,7 @@
 * See "OceanProject\License.md" for full licensing details.
 * =================================================*/
 
-#include "TimeDate.h"
+#include "TimeDateStruct.h"
 
 // This file must be present for FTimeDate & FLocation
 
