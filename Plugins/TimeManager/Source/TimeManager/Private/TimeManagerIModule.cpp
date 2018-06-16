@@ -26,14 +26,16 @@ void FTimeManagerModule::ShutdownModule()
 void FTimeManagerModule::OnWorldCreated(UWorld* World, const UWorld::InitializationValues IVS)
 {
 	//If we already have a TimeManagerActor do not spawn another one
+	//Just store it as the current TimeManagerActor for other plugins to use
 	for (TActorIterator<ATimeManager> ActorItr(World); ActorItr; ++ActorItr)
 	{
+		TimeManagerActor = *ActorItr;
 		return;
 	}
 	FVector location = FVector(0,0,0);
 	FRotator rotate = FRotator(0,0,0);
 	FActorSpawnParameters SpawnInfo;
-	/*TimeManagerActor = */World->SpawnActor<ATimeManager>(ATimeManager::StaticClass(), location, rotate, SpawnInfo);
+	TimeManagerActor = World->SpawnActor<ATimeManager>(ATimeManager::StaticClass(), location, rotate, SpawnInfo);
 }
 
 #undef LOCTEXT_NAMESPACE

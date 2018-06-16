@@ -38,5 +38,5 @@ public:
 		return FModuleManager::Get().IsModuleLoaded("TimeManager");
 	}
 
-	//ATimeManager TimeManagerActor;
+	ATimeManager* TimeManagerActor;
 };
