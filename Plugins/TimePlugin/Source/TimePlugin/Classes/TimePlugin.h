@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "ModuleManager.h"
-#include "Blueprint.h"
+#include "TimeManager.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
 
-class FTimeManagerModule : public IModuleInterface
+class FTimePlugin : public IModuleInterface
 {
 public:
 
@@ -22,9 +22,9 @@ public:
 	*
 	* @return Returns singleton instance, loading the module on demand if needed
 	*/
-	static inline FTimeManagerModule& Get()
+	static inline FTimePlugin& Get()
 	{
-		return FModuleManager::LoadModuleChecked< FTimeManagerModule >("TimeManager");
+		return FModuleManager::LoadModuleChecked< FTimePlugin >("TimePlugin");
 	}
 
 	/**
@@ -34,7 +34,7 @@ public:
 	*/
 	static inline bool IsAvailable()
 	{
-		return FModuleManager::Get().IsModuleLoaded("TimeManager");
+		return FModuleManager::Get().IsModuleLoaded("TimePlugin");
 	}
 
 	ATimeManager* TimeManagerActor;
