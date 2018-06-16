@@ -1,6 +1,6 @@
 // Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
 
-#include "TimeManagerBackEnd.h"
+#include "TimeManagerIModule.h"
 #include "EngineUtils.h"
 
 
@@ -9,17 +9,12 @@
 void FTimeManagerModule::StartupModule()
 {
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
-	//Declare what function we will delegate
-	//FWorldDelegates::FWorldEvent::FDelegate OnPostWorldCreationDelegate;
-	//Setup our delegate
-	//OnPostWorldCreationDelegate = FWorldDelegates::FWorldEvent::FDelegate::CreateRaw(this, &FTimeManagerModule::Init);
-	//Register our delegate
-	//FDelegateHandle OnPostWorldCreationDelegateHandle = FWorldDelegates::OnPostWorldCreation.Add(OnPostWorldCreationDelegate);
-
+	//Create our delegate type
 	FWorldDelegates::FWorldInitializationEvent::FDelegate OnWorldCreatedDelegate;
+	//Declare which function we want to bind to
 	OnWorldCreatedDelegate = FWorldDelegates::FWorldInitializationEvent::FDelegate::CreateRaw(this, &FTimeManagerModule::OnWorldCreated);
+	//Declare which event we want to bind to
 	FDelegateHandle OnWorldCreatedDelegateHandle = FWorldDelegates::OnPostWorldInitialization.Add(OnWorldCreatedDelegate);
-	
 }
 
 void FTimeManagerModule::ShutdownModule()

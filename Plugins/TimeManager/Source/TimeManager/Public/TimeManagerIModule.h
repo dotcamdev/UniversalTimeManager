@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "ModuleManager.h"
-#include "TimeManagerFrontEnd.h"
+#include "TimeManagerBP.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
 
 class FTimeManagerModule : public IModuleInterface

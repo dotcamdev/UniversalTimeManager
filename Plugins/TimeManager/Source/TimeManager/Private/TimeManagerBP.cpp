@@ -18,7 +18,7 @@
 * See "OceanProject\License.md" for full licensing details.
 * =================================================*/
 
-#include "TimeManagerFrontEnd.h"
+#include "TimeManagerBP.h"
 #include "Kismet/KismetMathLibrary.h"
 
 ATimeManager::ATimeManager(const class FObjectInitializer& PCIP) : Super(PCIP)
