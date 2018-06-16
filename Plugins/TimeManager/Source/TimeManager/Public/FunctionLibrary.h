@@ -1,18 +1,19 @@
 #pragma once
- 
+
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "FunctionLibrary.generated.h"
  
 UCLASS() 
-class UTimeManagerFunctionLibrary : public UObject
+class UTimeManagerFunctionLibrary :	public UBlueprintFunctionLibrary
 {
 	GENERATED_UCLASS_BODY()
  
-	//FORCEINLNE function
+	UFUNCTION(BlueprintCallable, Category = "TimeManager")
 	static FORCEINLINE bool IsValid()
 	{
 		return true;
 	}
- 
-	//cpp function
-	static int32 ComplicatedGameDataAnalysis();
+
+	UFUNCTION(BlueprintCallable, Category = "TimeManager")
+	static int32 ExampleTimeManagerFunction();
 };
