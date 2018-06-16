@@ -1,7 +1,6 @@
 // Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
 
 #include "TimeManagerBackEnd.h"
-#include "TimeDateStruct.h"
 
 #define LOCTEXT_NAMESPACE "FTimeManagerModule"
 
@@ -12,7 +11,7 @@ void FTimeManagerModule::StartupModule()
 	int32 Hour, Minute, Second, Millisecond;
 
 	FPlatformTime::SystemTime(Year, Month, DayOfWeek, Day, Hour, Minute, Second, Millisecond);
-	CurrentLocalTime = FTimeDate(Year, Month, Day, Hour, Minute, Second, Millisecond);
+	CurrentLocalTime = FTimeDateStruct(Year, Month, Day, Hour, Minute, Second, Millisecond);
 	InitializeCalendar(CurrentLocalTime);
 
 	//Declare what function we will delegate
@@ -31,13 +30,19 @@ void FTimeManagerModule::ShutdownModule()
 	// we call this function before unloading the module.
 }
 
-bool FTimeManagerModule::IsThisNumber42(int32 num)
-{
-	return num == 42;
-}
+
+
+
+//void FTimeManagerModule::SendFrontEnd(ATimeManagerFrontEnd TimeManagerFrontEnd)
+//{
+//	FrontEnd = TimeManagerFrontEnd;
+//}
+
+
+
 
 // Current Local Clock Time (LCT)
-FTimeDate CurrentLocalTime;
+FTimeDateStruct CurrentLocalTime;
 
 // The number of hours offset from UTC for the local location (value in the range of -12 to +12 hours from UTC)	
 int32 OffsetUTC = 0;
@@ -69,7 +74,7 @@ int32 DayOfYear = 0;
 float EoT = 0.0f;
 
 
-void FTimeManagerModule::InitializeCalendar(FTimeDate time)
+void FTimeManagerModule::InitializeCalendar(FTimeDateStruct time)
 {
 	time = ValidateTimeDate(time);
 
@@ -97,7 +102,7 @@ void FTimeManagerModule::InitializeCalendar(FTimeDate time)
 	CurrentLocalTime = time;
 }
 
-FTimeDate FTimeManagerModule::ValidateTimeDate(FTimeDate time)
+FTimeDateStruct FTimeManagerModule::ValidateTimeDate(FTimeDateStruct time)
 {
 	time.Year = FMath::Clamp(time.Year, 1, 9999);
 	time.Month = FMath::Clamp(time.Month, 1, 12);
@@ -111,12 +116,12 @@ FTimeDate FTimeManagerModule::ValidateTimeDate(FTimeDate time)
 }
 
 
-FTimeDate FTimeManagerModule::ConvertToTimeDate(FDateTime dt)
+FTimeDateStruct FTimeManagerModule::ConvertToTimeDate(FDateTime dt)
 {
-	return FTimeDate(dt.GetYear(), dt.GetMonth(), dt.GetDay(), dt.GetHour(), dt.GetMinute(), dt.GetSecond(), dt.GetMillisecond());
+	return FTimeDateStruct(dt.GetYear(), dt.GetMonth(), dt.GetDay(), dt.GetHour(), dt.GetMinute(), dt.GetSecond(), dt.GetMillisecond());
 }
 
-FDateTime FTimeManagerModule::ConvertToDateTime(FTimeDate td)
+FDateTime FTimeManagerModule::ConvertToDateTime(FTimeDateStruct td)
 {
 	return FDateTime(td.Year, td.Month, td.Day, td.Hour, td.Minute, td.Second, td.Millisecond);
 }
@@ -159,7 +164,7 @@ void FTimeManagerModule::SetCurrentLocalTime(float time)
 	float minute = FMath::Frac(time / 60) * 60;
 	float second = FMath::Frac(minute) * 60;
 	float millisec = FMath::Frac(second) * 1000;
-	FTimeDate newTD = FTimeDate(InternalTime.GetYear(), InternalTime.GetMonth(), InternalTime.GetDay(),
+	FTimeDateStruct newTD = FTimeDateStruct(InternalTime.GetYear(), InternalTime.GetMonth(), InternalTime.GetDay(),
 		FPlatformMath::FloorToInt(time / 60), minute, second, millisec);
 
 	InitializeCalendar(newTD);
@@ -178,7 +183,7 @@ int32 FTimeManagerModule::GetDaysInMonth(int32 year, int32 month)
 }
 
 
-int32 FTimeManagerModule::GetDayOfYear(FTimeDate time)
+int32 FTimeManagerModule::GetDayOfYear(FTimeDateStruct time)
 {
 	return ConvertToDateTime(time).GetDayOfYear();
 }

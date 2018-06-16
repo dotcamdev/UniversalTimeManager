@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "ModuleManager.h"
 #include "TimeDateStruct.h"
+//#include "TimeManagerFrontEnd.h"
 
 class FTimeManagerModule : public IModuleInterface
 {
@@ -13,7 +14,16 @@ public:
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
-	bool IsThisNumber42(int32 num);
+
+
+
+
+	//void SendFrontEnd(ATimeManagerFrontEnd TimeManagerFrontEnd);
+	//ATimeManagerFrontEnd FrontEnd;
+
+
+
+
 	/**
 	* Singleton-like access to this module's interface.  This is just for convenience!
 	* Beware of calling this during the shutdown phase, though.  Your module might have been unloaded already.
@@ -38,7 +48,7 @@ public:
 
 
 // Current Local Clock Time (LCT)
-	FTimeDate CurrentLocalTime;
+	FTimeDateStruct CurrentLocalTime;
 
 // The Latitude of the local location (-90 to +90 in degrees)
 	float Latitude = 0.0f;
@@ -72,7 +82,7 @@ public:
 *
 * @param: time (TimeDate) - The TimeDate value to calculate from.
 */
-	void InitializeCalendar(FTimeDate time);
+	void InitializeCalendar(FTimeDateStruct time);
 
 
 /**
@@ -82,7 +92,7 @@ public:
 * @param: time (TimeDate) - The TimeDate value to calculate from.
 * @return: int32 - The number of days elapsed in the current year.
 */
-	int32 GetDayOfYear(FTimeDate time);
+	int32 GetDayOfYear(FTimeDateStruct time);
 
 /**
 * Name: DaysInYear
@@ -182,11 +192,11 @@ public:
 
 	// Float versions
 
-	FTimeDate ConvertToTimeDate(FDateTime dt);
+	FTimeDateStruct ConvertToTimeDate(FDateTime dt);
 
-	FDateTime ConvertToDateTime(FTimeDate td);
+	FDateTime ConvertToDateTime(FTimeDateStruct td);
 
-	FTimeDate ValidateTimeDate(FTimeDate time);
+	FTimeDateStruct ValidateTimeDate(FTimeDateStruct time);
 
 	// TODO - Requires extra functions & rewriting to accommodate, FUTURE/NOT URGENT
 	// Designates that the calendar should use custom Date & Time struct rather than

@@ -20,5 +20,5 @@
 
 #include "TimeDateStruct.h"
 
-// This file must be present for FTimeDate & FLocation
+// This file must be present for FTimeDateStruct & FLocation
 
