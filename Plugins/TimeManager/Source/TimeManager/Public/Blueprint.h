@@ -23,7 +23,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "TimeDateStruct.h"
-#include "TimeManagerBP.generated.h"
+#include "Blueprint.generated.h"
 
 
 //An actor based calendar system for tracking date + time, and Sun/Moon rotation/phase.
