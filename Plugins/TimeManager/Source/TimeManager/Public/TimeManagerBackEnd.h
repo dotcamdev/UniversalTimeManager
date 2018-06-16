@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "ModuleManager.h"
+#include "TimeManagerFrontEnd.h"
+#include "Runtime/Engine/Classes/Engine/World.h"
 
 class FTimeManagerModule : public IModuleInterface
 {
@@ -12,6 +14,8 @@ public:
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
+
+	void OnWorldCreated(UWorld* World, const UWorld::InitializationValues IVS);
 
 	/**
 	* Singleton-like access to this module's interface.  This is just for convenience!
@@ -33,4 +37,6 @@ public:
 	{
 		return FModuleManager::Get().IsModuleLoaded("TimeManager");
 	}
+
+	//ATimeManager TimeManagerActor;
 };
